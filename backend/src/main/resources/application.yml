@@ -1,0 +1,68 @@
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: insurance-card-api
+  config:
+    # Cấu hình riêng của từng máy (mật khẩu DB...), file này nằm trong .gitignore.
+    # Tạo bằng cách copy application-local.example.yml -> application-local.yml
+    import: optional:classpath:application-local.yml
+  profiles:
+    # mysql (mặc định) | sqlserver  -> đổi bằng biến môi trường DB_VENDOR
+    active: ${DB_VENDOR:mysql}
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    # {vendor} = mysql | sqlserver  -> db/migration/mysql, db/migration/sqlserver
+    locations: classpath:db/migration/{vendor}
+    # DB đã được tạo sẵn bằng script database/*.sql (= V1 + V2) -> đánh dấu đã ở version 2
+    baseline-on-migrate: true
+    baseline-version: 2
+  jackson:
+    default-property-inclusion: always
+    deserialization:
+      fail-on-unknown-properties: false
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+app:
+  timezone: Asia/Ho_Chi_Minh
+  jwt:
+    # Base64 của khoá >= 256 bit. Đổi khi triển khai thật (biến môi trường JWT_SECRET).
+    secret: ${JWT_SECRET:SW5zdXJhbmNlQ2FyZC1EZW1vLVNlY3JldC1LZXktUGxlYXNlLUNoYW5nZS1Jbi1Qcm9kdWN0aW9uLTIwMjY=}
+    expiration-minutes: ${JWT_EXPIRATION_MINUTES:480}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  mail:
+    # false: không gửi email thật, link xác thực/đặt lại mật khẩu được ghi log
+    # và trả về trong response (devLink) để demo.
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:no-reply@insurancecard.vn}
+  security:
+    max-failed-logins: 5
+    lockout-minutes: 15
+  seed:
+    enabled: ${SEED_ENABLED:true}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.insurancecard: INFO

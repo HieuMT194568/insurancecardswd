@@ -1,0 +1,17 @@
+# Backend
+backend/target/
+backend/*.log
+# Cấu hình riêng từng máy (mật khẩu DB...) - xem application-local.example.yml
+backend/src/main/resources/application-local.yml
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# IDE / OS / công cụ local
+.idea/
+.vscode/
+.claude/
+*.iml
+.DS_Store
+Thumbs.db

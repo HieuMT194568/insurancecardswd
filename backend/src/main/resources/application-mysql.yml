@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/insurance_card?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&connectionTimeZone=Asia/Ho_Chi_Minh}
+    username: ${DB_USERNAME:root}
+    # Đặt trong application-local.yml (không đẩy lên git) hoặc biến môi trường DB_PASSWORD
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      # Schema do Flyway quản lý; Hibernate chỉ kiểm tra entity khớp với bảng.
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect

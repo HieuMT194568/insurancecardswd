@@ -1,0 +1,104 @@
+:root {
+  --ic-sidebar-width: 250px;
+}
+
+body {
+  background: #f4f6fa;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 55%, #20c997 140%);
+  color: #fff;
+}
+
+.sidebar {
+  width: var(--ic-sidebar-width);
+  min-height: calc(100vh - 56px);
+  background: #fff;
+  border-right: 1px solid #e5e8ef;
+}
+
+.sidebar .nav-link {
+  color: #3a4250;
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  margin-bottom: 2px;
+}
+
+.sidebar .nav-link:hover {
+  background: #eef3ff;
+}
+
+.sidebar .nav-link.active {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.sidebar .nav-link i {
+  width: 1.4rem;
+  display: inline-block;
+}
+
+.sidebar-heading {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a93a3;
+  padding: 0.9rem 0.9rem 0.3rem;
+}
+
+.content-area {
+  min-width: 0;
+}
+
+.stat-card .stat-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.card {
+  border: 1px solid #e5e8ef;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.table > :not(caption) > * > * {
+  vertical-align: middle;
+}
+
+.table thead th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7280;
+  background: #f8f9fb;
+  white-space: nowrap;
+}
+
+.info-label {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.picker-results {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.form-label .required::after {
+  content: ' *';
+  color: #dc3545;
+}
+
+.auth-card {
+  max-width: 460px;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  transition: transform 0.15s ease;
+}
